@@ -6,3 +6,5 @@ export const DEFAULT_HEADERS = {
 };
 
 export const BASE_URL = 'https://api.thecatapi.com/v1/';
+
+export const CATS_PAGE_COUNT = 18;

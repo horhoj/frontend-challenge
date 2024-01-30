@@ -3,6 +3,11 @@
   min-height: 64px;
   display: flex;
   padding: 0 64px;
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  z-index: 1000;
 }
 
 .navList {
