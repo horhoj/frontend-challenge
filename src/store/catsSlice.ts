@@ -46,7 +46,6 @@ const fetchCatListThunk = createAsyncThunk(
   async (_, store) => {
     try {
       const { page } = (store.getState() as RootState).cats;
-      console.log(13123, page);
 
       const res = await catsApi.fetchCatList(page);
       store.dispatch(actions.addCatPack(res));

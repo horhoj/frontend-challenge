@@ -42,6 +42,12 @@ export function CatsPage() {
     };
   }, [observerTarget, fetchCatListRequest.isLoading]);
 
+  useEffect(() => {
+    if (fetchCatListRequest.error) {
+      alert(JSON.stringify(fetchCatListRequest.error));
+    }
+  }, [fetchCatListRequest.error]);
+
   const handleCatCardClk = (cat: FetchCatListResponseItem) => {
     dispatch(catsFavoriteSlice.actions.add(cat));
   };
