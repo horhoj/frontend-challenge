@@ -1,25 +1,37 @@
-import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
+import { PayloadAction, createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import {
   RequestList,
   RequestStateProperty,
   makeRequestExtraReducer,
   makeRequestStateProperty,
 } from './helpers';
+import { RootState } from './types';
 import { catsApi } from '~/api/catsApi';
 import { FetchCatListResponseItem } from '~/api/cats.types';
 
 const SLICE_NAME = 'CATS';
 
 interface IS {
-  fetchCatListRequest: RequestStateProperty<FetchCatListResponseItem[]>;
+  catList: FetchCatListResponseItem[];
+  fetchCatListRequest: RequestStateProperty;
+  page: number;
 }
 
-const initialState: IS = { fetchCatListRequest: makeRequestStateProperty() };
+const initialState: IS = {
+  catList: [],
+  fetchCatListRequest: makeRequestStateProperty(),
+  page: 0,
+};
 
 const { actions, reducer } = createSlice({
   initialState,
   name: SLICE_NAME,
-  reducers: {},
+  reducers: {
+    addCatPack: (state, action: PayloadAction<FetchCatListResponseItem[]>) => {
+      state.catList.push(...action.payload);
+      state.page = state.page + 1;
+    },
+  },
   extraReducers: (builder) => {
     makeRequestExtraReducer<RequestList<IS>>(
       builder,
@@ -33,8 +45,12 @@ const fetchCatListThunk = createAsyncThunk(
   `${SLICE_NAME}/fetchCatListThunk`,
   async (_, store) => {
     try {
-      const res = await catsApi.fetchCatList();
-      return store.fulfillWithValue(res);
+      const { page } = (store.getState() as RootState).cats;
+      console.log(13123, page);
+
+      const res = await catsApi.fetchCatList(page);
+      store.dispatch(actions.addCatPack(res));
+      return store.fulfillWithValue(null);
     } catch (e: unknown) {
       return store.rejectWithValue((e as Error).message);
     }
