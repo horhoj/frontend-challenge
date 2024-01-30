@@ -1,0 +1,13 @@
+.HeaderNavLink {
+  min-height: 64px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 23px;
+  text-decoration: none;
+  color: #fff
+}
+
+.active {
+  background-color: #1E88E5;
+}
