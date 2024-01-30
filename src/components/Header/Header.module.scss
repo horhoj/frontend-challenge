@@ -2,12 +2,27 @@
   background-color: #2196F3;
   min-height: 64px;
   display: flex;
+  justify-content: center;
   padding: 0 64px;
   position: fixed;
   left: 0;
   top: 0;
   width: 100%;
   z-index: 1000;
+
+  .nav {
+    display: flex;
+    width: 100%;
+    max-width: 1440px;
+  }
+
+  @media (max-width: 1024px) {
+    padding: 0 32px;
+  }
+
+  @media (max-width: 511px) {
+    padding: 0 16px;
+  }
 }
 
 .navList {

@@ -7,7 +7,7 @@ export function Header() {
   return (
     <Portal>
       <header className={styles.Header}>
-        <nav>
+        <nav className={styles.nav}>
           <ul className={styles.navList}>
             <HeaderNavLink to={ROUTES.CATS}>Все котики</HeaderNavLink>
             <HeaderNavLink to={ROUTES.CATS_FAVORITE}>

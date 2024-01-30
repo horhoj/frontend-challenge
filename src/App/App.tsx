@@ -6,6 +6,7 @@ export function App() {
   return (
     <div className={styles.App}>
       <Header />
+      <div className={styles.fakeHeader}></div>
       <main className={styles.main}>
         <Router />
       </main>
