@@ -70,9 +70,7 @@ export function CatsPage() {
         </CatList>
 
         {!fetchCatListRequest.isLoading && <div ref={observerTarget}></div>}
-        {fetchCatListRequest.isLoading && (
-          <div className={styles.loader}>... загружаем еще котиков ...</div>
-        )}
+        <div className={styles.loader}>... загружаем еще котиков ...</div>
       </div>
     </>
   );
